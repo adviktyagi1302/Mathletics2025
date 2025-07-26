@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mathletics Quiz 2025</title>
+  <!-- Google Fonts: Segoe UI is a system font, using a similar web font 'Public Sans' for consistency -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Combined and Refined CSS Styles -->
+  <style>
+    body, html {
+      margin: 0; 
+      padding: 0;
+      font-family: 'Public Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* --- Navigation Bar --- */
+    .navbar {
+      position: fixed;
+      top: 0; 
+      left: 0; 
+      right: 0;
+      background: #1e3a8a;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links {
+      display: none; /* Hidden on mobile by default */
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-direction: column;
+      width: 100%;
+      background: #1e3a8a;
+      position: absolute;
+      top: 60px; /* Position below navbar */
+      left: 0;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-links li { 
+      margin: 0;
+      width: 100%;
+      text-align: center;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 15px 8px;
+      border-radius: 0;
+      display: block;
+      transition: background-color 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active { 
+      background: #2563eb; 
+    }
+    .hamburger-menu {
+      display: block; /* Show on mobile */
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .hamburger-menu .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      background-color: white;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    /* Desktop navigation styles */
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        width: auto;
+        background: none;
+      }
+      .nav-links li {
+        margin-right: 20px;
+        width: auto;
+      }
+       .nav-links a {
+        padding: 6px 8px;
+        border-radius: 4px;
+       }
+      .hamburger-menu {
+        display: none;
+      }
+    }
+
+    /* --- Page Content --- */
+    .page-content {
+      display: none; /* Hide all pages by default */
+      padding-top: 80px; /* Space for fixed navbar */
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .page-content.active {
+      display: block; /* Show only the active page */
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    /* --- Home Page Specific --- */
+    .home-hero {
+      height: 350px;
+      /* Using a high-quality, license-free image from Unsplash */
+      background: url('https://images.unsplash.com/photo-1596495578065-64086b3021da?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      padding: 0 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    /* --- About Page Specific --- */
+    .about-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .teachers {
+      max-width: 400px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.5;
+      background: #e0e7ff;
+      border-radius: 8px;
+      padding: 15px 20px;
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    /* --- Results Page Specific --- */
+    .results-text {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-top: 60px;
+      color: #ef4444;
+      font-weight: 600;
+    }
+
+    /* --- Gallery Page Specific --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      justify-items: center;
+    }
+    .gallery-placeholder {
+      width: 100%;
+      height: 120px;
+      background: #d1d5db;
+      border: 2px dashed #9ca3af;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #6b7280;
+      font-weight: 700;
+      user-select: none;
+      font-size: 1rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 50px;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reusable Navigation Bar -->
+  <nav class="navbar">
+    <a href="#home" class="nav-logo" style="color: white; text-decoration: none; font-weight: 700; font-size: 20px;">Mathletics 2025</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About Us</a></li>
+      <li><a href="#results" class="nav-link">Results</a></li>
+      <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    </ul>
+    <button class="hamburger-menu" id="hamburger-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main>
+    <!-- Home Page Content -->
+    <section id="home" class="page-content">
+      <div class="home-hero">
+        <div>
+          🔥 Mathletics Quiz 2025 🔥<br />
+          Sharpen Your Mind, Solve the Future!
+        </div>
+      </div>
+      <div class="container">
+        <h2>Event Info</h2>
+        <p><strong>Date:</strong> 7th August 2025</p>
+        <p><strong>Venue:</strong> DPSG Vasundhara Auditorium</p>
+        <p><strong>Hosted by:</strong> Delhi Public School Ghaziabad Vasundhara</p>
+      </div>
+    </section>
+
+    <!-- About Page Content -->
+    <section id="about" class="page-content">
+      <div class="container">
+        <h1 class="about-title">DPSG Vasundhara</h1>
+        <p class="about-text">
+          Delhi Public School Ghaziabad Vasundhara, a happy school with a blend of values, tradition, technology and a quest for quality and excellence. DPSG Vasundhara comes under Delhi Public School Ghaziabad Society. At DPSGV we believe that the school is a partner with the parent to build future citizens of India.
+        </p>
+        <div class="teachers">
+          <h3>TEACHERS IN CHARGE :-</h3>
+          <p>Nishi Sharma - 8505924040</p>
+          <p>Ambika Saxena - 9971360745</p>
+          <p>Rinku Narayan - 7838108296</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Page Content -->
+    <section id="results" class="page-content">
+      <div class="container">
+        <h1>Results</h1>
+        <p class="results-text">
+          Results are yet to be announced. Please check back soon!
+        </p>
+      </div>
+    </section>
+
+    <!-- Gallery Page Content -->
+    <section id="gallery" class="page-content">
+      <div class="container">
+        <h1>Gallery</h1>
+        <p>Photos will be added after the event. For now, here are placeholders:</p>
+        <div class="gallery-grid">
+          <div class="gallery-placeholder">Image Placeholder</div>
+          <div class="gallery-placeholder">Image Placeholder</div>
+          <div class="gallery-placeholder">Image Placeholder</div>
+          <div class="gallery-placeholder">Image Placeholder</div>
+          <div class="gallery-placeholder">Image Placeholder</div>
+          <div class="gallery-placeholder">Image Placeholder</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Reusable Footer -->
+  <footer>
+    &copy; 2025 Mathletics Quiz | DPSG Vasundhara
+  </footer>
+
+  <!-- JavaScript for SPA Navigation and Mobile Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link, .nav-logo');
+      const pages = document.querySelectorAll('.page-content');
+      const hamburger = document.getElementById('hamburger-menu');
+      const navMenu = document.getElementById('nav-links');
+
+      // Function to show the correct page
+      const showPage = (hash) => {
+        const targetHash = hash || '#home';
+        
+        pages.forEach(page => {
+          page.classList.remove('active');
+        });
+
+        const targetPage = document.querySelector(targetHash);
+        if (targetPage) {
+          targetPage.classList.add('active');
+        }
+
+        // Update active link style
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === targetHash) {
+            link.classList.add('active');
+          }
+        });
+        
+        // Close mobile menu after navigation
+        navMenu.classList.remove('active');
+      };
+
+      // Handle navigation clicks
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const hash = link.getAttribute('href');
+          window.location.hash = hash;
+          showPage(hash);
+        });
+      });
+
+      // Handle hamburger menu toggle
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+
+      // Show initial page on load
+      showPage(window.location.hash);
+    });
+  </script>
+</body>
+</html>
